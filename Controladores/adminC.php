@@ -38,7 +38,7 @@ class Admin__Controller
         LOGIN User
         =============================*/
 
-        else if (isset($_POST["email__R"])) {
+        if (isset($_POST["email__R"])) {
             $datosC = array(
                 "email" => $_POST["email__R"],
                 "contrasena" => $_POST["contrasena__R"]
