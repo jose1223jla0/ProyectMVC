@@ -21,25 +21,27 @@ class Usuario__Model extends ConexionBD
     }
 
     /*============================================
-    REGISTRO DE  USUARIO
+    REGISTRAR DE  USUARIO
     ==============================================*/
 
     public function registrarUsuarios__Model($datosC, $tablaBD = 'Usuarios')
     {
         $conn__db = new ConexionBD;
         $conn__db->Start__Connection();
+
         $nombre = $datosC['nombre'];
         $apellido = $datosC['apellido'];
         $email = $datosC['email'];
-        $passwd = $datosC['contrasena'];
+        $passwd = password_hash($datosC['contrasena'],PASSWORD_DEFAULT);
         $telf = $datosC['telefono'];
-        $sql = "INSERT INTO $tablaBD VALUES 
-            (Null,'$nombre', '$apellido', '$email', '$passwd', '$telf')";
+        $roleId = 1; // ID de rol usuario
+        $sql = "INSERT INTO $tablaBD (nombre, apellido, email, contrasena, telefono, RoleID) VALUES 
+            ('$nombre', '$apellido', '$email', '$passwd', '$telf', '$roleId')";
 
         $result = $conn__db->Query__db($sql);
-
         return $result;
     }
+
 
     /*============================================
     MOSTRAR USUARIO

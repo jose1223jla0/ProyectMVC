@@ -15,23 +15,30 @@ class Admin__Controller
 
     public function Login__Controller()
     {
-
-        // if (isset($_POST["Email"])) {
-        //     $datosC = array(
-        //         "usuario" => $_POST["Email"],
-        //         "clave" => $_POST["Passwd"]
-        //     );
-        //     $result = $this->admin__cont->Login__Model($datosC);
-        //     if (isset($result)) {
-        //         session_start();
-        //         $_SESSION['ingresar'] = true;
-        //         header("location:index.php?ruta=start");
-        //     } else {
-        //         echo "ERROR AL INGRESAR";
-        //     }
-        // }
+        /*============================
+        LOGIN Admin
+        =============================*/
 
         if (isset($_POST["email__R"])) {
+            $datosC = array(
+                "email" => $_POST["email__R"],
+                "contrasena" => $_POST["contrasena__R"]
+            );
+            $result = $this->admin__cont->Login__Model($datosC);
+            if (isset($result)) {
+                session_start();
+                $_SESSION['ingresar'] = true;
+                header("location:index.php?ruta=start");
+            } else {
+                echo "ERROR AL INGRESAR";
+            }
+        }
+
+        /*============================
+        LOGIN User
+        =============================*/
+
+        else if (isset($_POST["email__R"])) {
             $datosC = array(
                 "email" => $_POST["email__R"],
                 "contrasena" => $_POST["contrasena__R"]
