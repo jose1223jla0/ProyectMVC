@@ -4,7 +4,7 @@
     class Admin__Model extends ConexionBD
     {
         /*==========================================
-         ----------- PARA EL ADMNISTRADOR-----------
+         ----------- LOGIN -----------
         ============================================*/
         public function Login__Model($datosC, $tablaBD = 'Usuarios')
         {
@@ -17,6 +17,18 @@
             $result = $conn__db->Query__db($sql);
            
             return $result->fetch_array(MYSQLI_ASSOC);
+        }
+
+        /*============================================
+        RECOVER PASSWORD
+        ==============================================*/
+        public function Recover__Password($datosC, $tablaBD = 'Usuarios')
+        {
+            $conn__db = new ConexionBD();
+            $conn__db->Start__Connection();
+            $email=$datosC['email'];
+            $sql="SELECT question_1, question_2, FROM Usuarios WHERE email=$email";
+            return $sql;
         }
     }
 ?>

@@ -9,6 +9,7 @@ class RutasM
             $ruta == 'start' ||
             $ruta == 'registrar' ||
             $ruta == 'salir' ||
+            $ruta == 'recoverPass' ||
             $ruta == 'perfil' ||
             $ruta == 'editar'
         ) {

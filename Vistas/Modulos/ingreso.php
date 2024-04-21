@@ -3,7 +3,6 @@ $ingreso = new Admin__Controller();
 $ingreso->Login__Controller();
 ?>
 <br> <!-- Vistas/Modulos/ingreso.php -->
-
 <div class="font-sans flex justify-center  items-center h-screen">
 	<div class="max-w-sm md:max-w-lg border-slate-500 border-2 md:text-sm p-6 rounded-2xl shadow-lg bg-slate-800 flex-1 shadow-cyan-500/50">
 		<h1 class="text-2xl font-bold mb-4 font-sans text-white">Welcome back</h1>
@@ -64,7 +63,7 @@ $ingreso->Login__Controller();
 							</div>
 
 							<div>
-								<a class="text-blue-800 text-sm font-bold hover:underline" href="">Forgot password?</a>
+								<a data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" class="text-blue-800 text-sm font-bold hover:underline" href="index.php?ruta=recoverPass">Forgot password?</a>
 							</div>
 
 						</div>
