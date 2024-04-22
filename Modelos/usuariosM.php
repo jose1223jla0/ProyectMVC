@@ -21,7 +21,7 @@ class Usuario__Model extends ConexionBD
     }
 
     /*============================================
-    REGISTRAR DE  USUARIO
+    REGISTRAR  USUARIO
     ==============================================*/
 
     public function registrarUsuarios__Model($datosC, $tablaBD = 'Usuarios')

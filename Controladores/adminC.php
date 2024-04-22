@@ -1,8 +1,9 @@
-<?php  //Controladores/adminC.php
+<?php //Controladores/adminC.php
 class Admin__Controller
 {
     private $admin__cont;
     private $userAd__cont;
+
     public function __construct()
     {
         $this->admin__cont = new Admin__Model();
@@ -15,41 +16,32 @@ class Admin__Controller
 
     public function Login__Controller()
     {
-        /*============================
-        LOGIN Admin
-        =============================*/
-
         if (isset($_POST["email__R"])) {
             $datosC = array(
                 "email" => $_POST["email__R"],
                 "contrasena" => $_POST["contrasena__R"]
             );
-            $result = $this->admin__cont->Login__Model($datosC);
-            if (isset($result)) {
+
+            /*============================
+            LOGIN Admin
+            =============================*/
+            $adminResult = $this->admin__cont->Login__Model($datosC);
+            if ($adminResult !== false) {
                 session_start();
                 $_SESSION['ingresar'] = true;
                 header("location:index.php?ruta=start");
-            } else {
-                echo "ERROR AL INGRESAR";
+                exit(); 
             }
-        }
 
-        /*============================
-        LOGIN User
-        =============================*/
-
-        if (isset($_POST["email__R"])) {
-            $datosC = array(
-                "email" => $_POST["email__R"],
-                "contrasena" => $_POST["contrasena__R"]
-            );
-            $result=$this->userAd__cont->LoginUser__Model($datosC);
-            if (isset($result)) {
+            /*============================
+            LOGIN User
+            =============================*/
+            $userResult = $this->userAd__cont->LoginUser__Model($datosC);
+            if ($userResult !== false) {
                 session_start();
                 $_SESSION['ingresar'] = true;
                 header("location:index.php?ruta=start");
-            } else {
-                echo "ERROR!";
+                exit(); 
             }
         }
     }

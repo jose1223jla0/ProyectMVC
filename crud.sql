@@ -1,7 +1,6 @@
 -- Active: 1713469264996@@127.0.0.1@3306@crud
 use crud;
 
-
 CREATE TABLE Roles (
     RoleID INT,
     PRIMARY KEY(RoleID),
@@ -23,8 +22,6 @@ CREATE TABLE Usuarios (
 INSERT INTO Roles (RoleID, RoleName) VALUES
 (1, 'Usuarios'),
 (2, 'Administrador');
-
--- Puedes agregar más roles si es necesario
 
 -- Ejemplo de usuarios
 -- Insertar usuarios
