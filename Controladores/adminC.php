@@ -1,9 +1,8 @@
-<?php //Controladores/adminC.php
+<?php  //Controladores/adminC.php
 class Admin__Controller
 {
     private $admin__cont;
     private $userAd__cont;
-
     public function __construct()
     {
         $this->admin__cont = new Admin__Model();
@@ -25,23 +24,23 @@ class Admin__Controller
             /*============================
             LOGIN Admin
             =============================*/
-            $adminResult = $this->admin__cont->Login__Model($datosC);
-            if ($adminResult !== false) {
+            $result = $this->admin__cont->Login__Model($datosC);
+            if (isset($result)) {
                 session_start();
                 $_SESSION['ingresar'] = true;
                 header("location:index.php?ruta=start");
-                exit(); 
+                exit();
             }
 
             /*============================
             LOGIN User
             =============================*/
-            $userResult = $this->userAd__cont->LoginUser__Model($datosC);
-            if ($userResult !== false) {
+            $result = $this->userAd__cont->LoginUser__Model($datosC);
+            if (isset($result)) {
                 session_start();
                 $_SESSION['ingresar'] = true;
                 header("location:index.php?ruta=start");
-                exit(); 
+                exit();
             }
         }
     }
