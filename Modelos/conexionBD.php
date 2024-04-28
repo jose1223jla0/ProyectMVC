@@ -36,5 +36,10 @@ class ConexionBD
     {
         return $this->connection__db->query($sql);
     }
+
+    public function Prepare__query($sql)
+    {
+        return $this->connection__db->prepare($sql);
+    }
 }
 ?>

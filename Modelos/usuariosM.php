@@ -5,7 +5,7 @@ class Usuario__Model extends ConexionBD
 {
 
     /*=========================================
-    USER LOGIN
+        USER LOGIN
     ===========================================*/
     public function LoginUser__Model($datosC, $tablaBD = 'Usuarios')
     {
@@ -14,14 +14,25 @@ class Usuario__Model extends ConexionBD
         $user = $datosC['email'];
         $passw = $datosC['contrasena'];
         $sql = "SELECT email, contrasena FROM $tablaBD 
-                WHERE email='$user' AND contrasena='$passw'";
-        $result = $conn__db->Query__db($sql);
-
-        return $result->fetch_array(MYSQLI_ASSOC);
+                WHERE email=?";
+  
+        $stmt=$conn__db->Prepare__query($sql);
+        $stmt->bind_param("s",$user);
+        $stmt->execute();
+        $result=$stmt->get_result();
+        if($row=$result->fetch_assoc())
+        {
+            if(password_verify($passw,$row['contrasena']))
+            {
+                return $row;
+            }else{
+                return null;
+            }
+        }
     }
-
+    
     /*============================================
-    REGISTRAR  USUARIO
+        REGISTRAR  USUARIO
     ==============================================*/
 
     public function registrarUsuarios__Model($datosC, $tablaBD = 'Usuarios')
@@ -39,12 +50,14 @@ class Usuario__Model extends ConexionBD
             ('$nombre', '$apellido', '$email', '$passwd', '$telf', '$roleId')";
 
         $result = $conn__db->Query__db($sql);
+
+        
         return $result;
     }
 
 
     /*============================================
-    MOSTRAR USUARIO
+        MOSTRAR USUARIO
     ==============================================*/
 
     public function mostrarUsuarios__Model($tablaBD = 'Usuarios')
@@ -58,7 +71,7 @@ class Usuario__Model extends ConexionBD
     }
 
     /*============================================
-    EDITAR USUARIO
+        EDITAR USUARIO
     ==============================================*/
 
     public function editarUsuarios__Model($datosC, $tablaBD = 'Usuarios')
@@ -74,7 +87,7 @@ class Usuario__Model extends ConexionBD
     }
 
     /*============================================
-    ACTUALIZAR  USUARIO
+        ACTUALIZAR  USUARIO
     ==============================================*/
 
     public function actualizarUsuarios__Model($datosC, $tablaBD = 'Usuarios')
@@ -96,7 +109,7 @@ class Usuario__Model extends ConexionBD
     }
 
     /*============================================
-    ELIMINAR  USUARIO
+        ELIMINAR  USUARIO
     ==============================================*/
 
     public function borrarUsuarios__Model($datosC, $tablaBD = 'Usuarios')

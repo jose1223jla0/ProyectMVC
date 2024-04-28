@@ -36,7 +36,9 @@ class Admin__Controller
             LOGIN User
             =============================*/
             $result = $this->userAd__cont->LoginUser__Model($datosC);
-            if (isset($result)) {
+
+            if (isset($result)) 
+            {
                 session_start();
                 $_SESSION['ingresar'] = true;
                 header("location:index.php?ruta=start");
